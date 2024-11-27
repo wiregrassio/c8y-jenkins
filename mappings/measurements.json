@@ -1,0 +1,57 @@
+{
+    "ident": "ovt8tq",
+    "tested": false,
+    "filterMapping": "$count(telemetry.telemetryReadings) > 0",
+    "autoAckOperation": true,
+    "source": "{\"messageId\":\"C333646781-17108550186195\",\"messageType\":\"statusMessage\",\"messageVersion\":\"1.5\",\"messageTimestamp\":\"2024-03-19T13:30:18.619Z\",\"manufacturer\":{\"manufacturerName\":\"Scale-1\",\"manufacturerDeviceModel\":\"FreshWay\",\"manufacturerFamily\":\"FreshWay\",\"manufacturerSerialNumber\":\"C333646781\",\"manufacturerDeviceId\":\"781\"},\"configuration\":{\"timezone\":\"EST\",\"osVersion\":\"5.9.88-1.0.0-hobart-4.0.0-gc946a96\",\"osName\":\"Ubuntu\",\"clientVersion\":\"5.1.104\",\"hmiVersion\":\"3.0\",\"macAddress\":\"00:02:6b:12:35:2a\",\"ipAddress\":\"26.111.82.44\",\"hostName\":\"0.0.0.0\",\"ntpServerAddress\":\"172.26.90.71\",\"ntpSyncTimestamp\":\"2023-08-22T16:44:01.000Z\",\"ntpSyncSuccess\":false,\"dhcpProtocolEnabled\":true,\"rssi\":null,\"losStrength\":null},\"customer\":{\"customerGuid\":\"8888-781\",\"customerName\":\"Department Sales Floor\",\"customerDeviceClass\":\"Scale\",\"customerSiteId\":\"8888\"},\"telemetry\":{\"telemetryTimestamp\":\"2023-08-22T16:43:10.000Z\",\"telemetryReadings\":[{\"name\":\"GrossWeight\",\"unit\":\"lb\",\"value\":\"123\"},{\"name\":\"TareWeight\",\"unit\":\"lb\",\"value\":\"456\"}]},\"events\":[{\"code\":\"Reboot\",\"eventTimestamp\":\"2023-08-22T16:43:10.000Z\"},{\"code\":\"Rezero\",\"eventTimestamp\":\"2023-08-22T16:43:10.000Z\"}],\"errors\":[{\"code\":\"WeigherMalfunction\",\"eventTimestamp\":\"2023-08-22T16:43:40.000Z\"}]}",
+    "externalIdType": "c8y_Serial",
+    "qos": "AT_LEAST_ONCE",
+    "substitutions": [
+        {
+            "resolve2ExternalId": false,
+            "pathSource": "manufacturer.manufacturerSerialNumber",
+            "pathTarget": "source.id",
+            "repairStrategy": "DEFAULT",
+            "expandArray": false
+        },
+        {
+            "resolve2ExternalId": false,
+            "pathSource": "messageType",
+            "pathTarget": "type",
+            "repairStrategy": "DEFAULT",
+            "expandArray": false
+        },
+        {
+            "resolve2ExternalId": false,
+            "pathSource": "telemetry.telemetryTimestamp",
+            "pathTarget": "time",
+            "repairStrategy": "DEFAULT",
+            "expandArray": false
+        },
+        {
+            "resolve2ExternalId": false,
+            "pathSource": "$map(telemetry.telemetryReadings, function($v, $i, $a) {{telemetry.telemetryReadings[$i].name: {\"unit\": telemetry.telemetryReadings[$i].unit,\"value\": $number(telemetry.telemetryReadings[$i].value)}}})",
+            "pathTarget": "telemetry",
+            "repairStrategy": "DEFAULT",
+            "expandArray": true
+        }
+    ],
+    "snoopedTemplates": [],
+    "createNonExistingDevice": false,
+    "id": "2414008",
+    "subscriptionTopic": "/hobart/freshway/scale",
+    "direction": "INBOUND",
+    "mappingTopicSample": "/hobart/freshway/scale",
+    "snoopStatus": "NONE",
+    "debug": false,
+    "mapDeviceIdentifier": true,
+    "active": true,
+    "targetAPI": "MEASUREMENT",
+    "target": "{\"type\":\"message_type\",\"source\":{\"id\":\"0\"},\"time\":\"1970-01-01T00:00:00Z\",\"telemetry\":{\"series\":{\"unit\":\"qty\",\"value\":0}}}",
+    "updateExistingDevice": false,
+    "mappingType": "JSON",
+    "lastUpdate": 1732652842001,
+    "name": "scale-measurements-v2",
+    "supportsMessageContext": false,
+    "mappingTopic": "/hobart/freshway/scale"
+}

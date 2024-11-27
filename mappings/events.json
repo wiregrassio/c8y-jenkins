@@ -1,0 +1,57 @@
+{
+    "ident": "2ltoc9",
+    "tested": false,
+    "filterMapping": "$count(events) > 0",
+    "autoAckOperation": true,
+    "source": "{\"messageId\":\"C333646781-17108550186195\",\"messageType\":\"statusMessage\",\"messageVersion\":\"1.5\",\"messageTimestamp\":\"2024-03-19T13:30:18.619Z\",\"manufacturer\":{\"manufacturerName\":\"Scale-1\",\"manufacturerDeviceModel\":\"FreshWay\",\"manufacturerFamily\":\"FreshWay\",\"manufacturerSerialNumber\":\"Postman\",\"manufacturerDeviceId\":\"781\"},\"configuration\":{\"timezone\":\"EST\",\"osVersion\":\"5.9.88-1.0.0-hobart-4.0.0-gc946a96\",\"osName\":\"Ubuntu\",\"clientVersion\":\"5.1.104\",\"hmiVersion\":\"3.0\",\"macAddress\":\"00:02:6b:12:35:2a\",\"ipAddress\":\"26.111.82.44\",\"hostName\":\"0.0.0.0\",\"ntpServerAddress\":\"172.26.90.71\",\"ntpSyncTimestamp\":\"2023-08-22T16:44:01.000Z\",\"ntpSyncSuccess\":false,\"dhcpProtocolEnabled\":true,\"rssi\":null,\"losStrength\":null},\"customer\":{\"customerGuid\":\"8888-781\",\"customerName\":\"Department Sales Floor\",\"customerDeviceClass\":\"Scale\",\"customerSiteId\":\"8888\"},\"telemetry\":{\"telemetryTimestamp\":\"2024-11-26T20:09:35.418Z\",\"telemetryReadings\":[{\"name\":\"GrossWeight\",\"unit\":\"lb\",\"value\":\"303\"},{\"name\":\"TareWeight\",\"unit\":\"lb\",\"value\":\"176\"}]},\"events\":[{\"code\":\"Reboot\",\"eventTimestamp\":\"2024-11-26T20:09:35.418Z\"},{\"code\":\"Rezero\",\"eventTimestamp\":\"2024-11-26T20:09:35.418Z\"}],\"errors\":[{\"code\":\"WeigherMalfunction\",\"eventTimestamp\":\"2024-11-26T20:09:35.418Z\"}]}",
+    "externalIdType": "c8y_Serial",
+    "qos": "AT_LEAST_ONCE",
+    "substitutions": [
+        {
+            "resolve2ExternalId": false,
+            "pathSource": "manufacturer.manufacturerSerialNumber",
+            "pathTarget": "source.id",
+            "repairStrategy": "DEFAULT",
+            "expandArray": false
+        },
+        {
+            "resolve2ExternalId": false,
+            "pathSource": "messageType",
+            "pathTarget": "type",
+            "repairStrategy": "DEFAULT",
+            "expandArray": false
+        },
+        {
+            "resolve2ExternalId": false,
+            "pathSource": "events.code",
+            "pathTarget": "text",
+            "repairStrategy": "DEFAULT",
+            "expandArray": true
+        },
+        {
+            "resolve2ExternalId": false,
+            "pathSource": "events.eventTimestamp",
+            "pathTarget": "time",
+            "repairStrategy": "DEFAULT",
+            "expandArray": true
+        }
+    ],
+    "snoopedTemplates": [],
+    "createNonExistingDevice": false,
+    "id": "6015738",
+    "subscriptionTopic": "/hobart/freshway/scale",
+    "direction": "INBOUND",
+    "mappingTopicSample": "/hobart/freshway/scale",
+    "snoopStatus": "NONE",
+    "debug": false,
+    "mapDeviceIdentifier": true,
+    "active": false,
+    "targetAPI": "EVENT",
+    "target": "{\"source\":{\"id\":\"909090\"},\"text\":\"This is a new test event.\",\"time\":\"2022-08-05T00:14:49.389+02:00\",\"type\":\"c8y_TestEvent\"}",
+    "updateExistingDevice": false,
+    "mappingType": "JSON",
+    "lastUpdate": 1732656672126,
+    "name": "scale-events-v2",
+    "supportsMessageContext": false,
+    "mappingTopic": "/hobart/freshway/scale"
+}
